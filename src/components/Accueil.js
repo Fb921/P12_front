@@ -22,6 +22,7 @@ import { useParams } from "react-router-dom";
 // Charts 
 import MyBarChart from "../components/BarChart.js"
 import LinearChart from "../components/LinearChart.js"
+import RadarChart from "../components/RadarChart.js"
 
 function Accueil(){
     const [userName, setUserName] = useState(null);
@@ -31,6 +32,7 @@ function Accueil(){
     const [userLipid, setUserLipid] = useState(null);
     const [userSession, setUserSession] = useState(null);
     const [userAvgSession, setUserAvgSession] = useState(null);
+    const [userPerformances, setUserPerformances] = useState(null);
 
     const [isNameLoading, setNameLoading] = useState(true);
     const [isProteinLoading, setProteinLoading] = useState(true);
@@ -39,6 +41,7 @@ function Accueil(){
     const [isCarbohydrateLoading, setCarbohydrateLoading] = useState(true);
     const [isSessionLoading, setSessionLoading] = useState(true);
     const [isAvgSessionLoading, setAvgSessionLoading] = useState(true);
+    const [isPerformancesLoading, setPerformancesLoading] = useState(true);
 
     let { id } = useParams();
 
@@ -91,6 +94,14 @@ function Accueil(){
         setAvgSessionLoading(false);
         return;
     };
+    const handleUserPerformances = async () => {
+        let performances = await userInfos.getUserPerformances();
+        console.log("performances");
+        console.log(performances);
+        setUserPerformances(performances);
+        setPerformancesLoading(false);
+        return;
+    };
 
     useEffect(() => {
         setNameLoading(true);
@@ -113,6 +124,10 @@ function Accueil(){
 
         setAvgSessionLoading(true);
         handleUserAvgSession();
+
+        setPerformancesLoading(true);
+        handleUserPerformances();
+
 
         return;
     }, []);
@@ -138,6 +153,11 @@ function Accueil(){
                                 <div className="linearchart_container">
                                     {
                                         isAvgSessionLoading ? <div>Session Loading ...</div> :  <LinearChart data={ userAvgSession}></LinearChart>
+                                    }
+                                </div>
+                                <div className="radarchart_container">
+                                    {
+                                        isPerformancesLoading ? <div>Session Loading ...</div> :  <RadarChart data={ userPerformances}></RadarChart>
                                     }
                                 </div>
                             </div>
