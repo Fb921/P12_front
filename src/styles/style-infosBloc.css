@@ -1,0 +1,37 @@
+.infosBloc_container{
+    min-height:23%;
+    max-height:23%;
+    width:100%;
+    background-color:#FBFBFB;
+    border-radius:10px;
+    display:grid;
+    grid-template-columns:30% 70%;
+    align-items:center;
+    padding:20px;
+    box-sizing: border-box;
+}
+
+.infosBloc_container > *{
+    width:100%;
+}
+
+.img_container img{
+    width:100%;
+    height:auto;
+}
+
+.infos_container{
+    padding-left:15px;
+}
+
+.infos_container h2{
+    font-size:20px;
+    font-weight:bold;
+    margin:0;
+    margin-bottom:5px;
+}
+.infos_container h2 + div{
+    color:#74798C;
+    font-size:14px
+}
+
