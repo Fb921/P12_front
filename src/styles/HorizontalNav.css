@@ -1,0 +1,30 @@
+nav .horizontal_nav{
+    display:flex;
+    justify-content:space-between;
+    background:#000000;
+    color:#fff;
+    margin:0;
+    padding:10px 0;
+    align-items:center;
+    position:relative;
+    z-index:2;
+    overflow:hidden;
+    box-shadow:0 4px 0 #00000020;
+}
+a{
+    text-decoration:none;
+}
+nav .horizontal_nav li{
+    color:white;
+    display:block;
+    align-self:center;
+    font-size:20px;
+}
+nav .horizontal_nav a:not(:first-child) li{
+    padding:0 7vw;
+}
+
+#logo{
+    height:57px;
+    margin-left:20px
+}
