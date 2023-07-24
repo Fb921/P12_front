@@ -23,6 +23,8 @@ import { useParams } from "react-router-dom";
 import MyBarChart from "../components/BarChart.js"
 import LinearChart from "../components/LinearChart.js"
 import RadarChart from "../components/RadarChart.js"
+import PieChart from "../components/PieChart.js"
+
 
 function Accueil(){
     const [userName, setUserName] = useState(null);
@@ -33,7 +35,8 @@ function Accueil(){
     const [userSession, setUserSession] = useState(null);
     const [userAvgSession, setUserAvgSession] = useState(null);
     const [userPerformances, setUserPerformances] = useState(null);
-
+    const [userObjectif, setUserObjectif] = useState(null);
+    
     const [isNameLoading, setNameLoading] = useState(true);
     const [isProteinLoading, setProteinLoading] = useState(true);
     const [isCalorieLoading, setCalorieLoading] = useState(true);
@@ -42,6 +45,7 @@ function Accueil(){
     const [isSessionLoading, setSessionLoading] = useState(true);
     const [isAvgSessionLoading, setAvgSessionLoading] = useState(true);
     const [isPerformancesLoading, setPerformancesLoading] = useState(true);
+    const [isObjectifLoading, setObjectifLoading] = useState(true);
 
     let { id } = useParams();
 
@@ -51,13 +55,15 @@ function Accueil(){
 
     let userInfos = new getUserInfos(id);
 
+
+    
+    
     const handleUserName = async () => {
         let name = await userInfos.getUserName();
         setUserName(name);
         setNameLoading(false);
         return;
     };
-
     const handleUserProtein = async () => {
         let protein = await userInfos.getUserProteinCount();
         setUserProtein(protein);
@@ -102,6 +108,13 @@ function Accueil(){
         setPerformancesLoading(false);
         return;
     };
+    const handleUserObjectif = async () => {
+        let objectif = await userInfos.getUserObjectif();
+        setUserObjectif(objectif);
+        setObjectifLoading(false);
+        return;
+    };
+
 
     useEffect(() => {
         setNameLoading(true);
@@ -128,9 +141,12 @@ function Accueil(){
         setPerformancesLoading(true);
         handleUserPerformances();
 
+        setObjectifLoading(true);
+        handleUserObjectif();
 
         return;
     }, []);
+
 
     return (
         <div>
@@ -143,7 +159,7 @@ function Accueil(){
                     }
                     <div id="infos_container">
                         <div id="graphs_container">
-                            <div className="barchart_title">Activité quotidienne</div>
+                            <div class="barchart_title">Activité quotidienne</div>
                             <div className='barchart_container'>
                                 {
                                     isSessionLoading ? <div>Session Loading ...</div> :  <MyBarChart data={ userSession }></MyBarChart>
@@ -158,6 +174,11 @@ function Accueil(){
                                 <div className="radarchart_container">
                                     {
                                         isPerformancesLoading ? <div>Session Loading ...</div> :  <RadarChart data={ userPerformances}></RadarChart>
+                                    }
+                                </div>
+                                <div className="piechart_container">
+                                    {
+                                        isObjectifLoading ? <div>Objectif Loading ...</div> :  <PieChart data={ userObjectif}></PieChart>
                                     }
                                 </div>
                             </div>
