@@ -21,6 +21,7 @@ import { useParams } from "react-router-dom";
 
 // Charts 
 import MyBarChart from "../components/BarChart.js"
+import LinearChart from "../components/LinearChart.js"
 
 function Accueil(){
     const [userName, setUserName] = useState(null);
@@ -29,6 +30,7 @@ function Accueil(){
     const [userCarbohydrate, setUserCarbohydrate] = useState(null);
     const [userLipid, setUserLipid] = useState(null);
     const [userSession, setUserSession] = useState(null);
+    const [userAvgSession, setUserAvgSession] = useState(null);
 
     const [isNameLoading, setNameLoading] = useState(true);
     const [isProteinLoading, setProteinLoading] = useState(true);
@@ -36,6 +38,7 @@ function Accueil(){
     const [isLipidLoading, setLipidLoading] = useState(true);
     const [isCarbohydrateLoading, setCarbohydrateLoading] = useState(true);
     const [isSessionLoading, setSessionLoading] = useState(true);
+    const [isAvgSessionLoading, setAvgSessionLoading] = useState(true);
 
     let { id } = useParams();
 
@@ -82,6 +85,12 @@ function Accueil(){
         setSessionLoading(false);
         return;
     };
+    const handleUserAvgSession = async () => {
+        let session = await userInfos.getUserAvgSession();
+        setUserAvgSession(session);
+        setAvgSessionLoading(false);
+        return;
+    };
 
     useEffect(() => {
         setNameLoading(true);
@@ -101,6 +110,9 @@ function Accueil(){
 
         setSessionLoading(true);
         handleUserSession();
+
+        setAvgSessionLoading(true);
+        handleUserAvgSession();
 
         return;
     }, []);
@@ -123,6 +135,11 @@ function Accueil(){
                                 }
                             </div>
                             <div className="charts_container">
+                                <div className="linearchart_container">
+                                    {
+                                        isAvgSessionLoading ? <div>Session Loading ...</div> :  <LinearChart data={ userAvgSession}></LinearChart>
+                                    }
+                                </div>
                             </div>
                         </div>
                         <div id="perfs_container">

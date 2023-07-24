@@ -91,3 +91,9 @@ h1{
     grid-template-columns:31% 31% 31%;
     justify-content:space-between;
 }
+
+
+.linearchart_container{
+    background-color:#FF0000;
+    border-radius:5px;
+}
