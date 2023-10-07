@@ -159,7 +159,7 @@ function Accueil(){
                     }
                     <div id="infos_container">
                         <div id="graphs_container">
-                            <div class="barchart_title">Activité quotidienne</div>
+                            <div className="barchart_title">Activité quotidienne</div>
                             <div className='barchart_container'>
                                 {
                                     isSessionLoading ? <div>Session Loading ...</div> :  <MyBarChart data={ userSession }></MyBarChart>

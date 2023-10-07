@@ -3,28 +3,23 @@ import {ResponsiveContainer, PieChart, Pie, Legend, Cell, Sector} from 'recharts
 
 
 const renderActiveShape = (props) => {
-    const RADIAN = Math.PI / 180;
-    const { cx, cy, midAngle, innerRadius, outerRadius, startAngle, endAngle, fill, payload, percent, value } = props;
-    const sin = Math.sin(-RADIAN * midAngle);
-    const cos = Math.cos(-RADIAN * midAngle);
-    const mx = cx + (outerRadius + 30) * cos;
-    const my = cy + (outerRadius + 30) * sin;
+    const { cx, cy, startAngle, endAngle, fill} = props;
+
     return (
       <g>
         <Sector
           cx={cx}
           cy={cy}
-          innerRadius={98}
-          outerRadius={98}
+          innerRadius={(window.innerWidth < 1173)?68:98}
+          outerRadius={(window.innerWidth < 1173)?68:98}
           startAngle={startAngle}
           endAngle={endAngle}
           fill={fill}
-          strokeLinecap='round'
           strokeLinejoin='round'
           strokeWidth="16px"
           stroke="#FF0101"
         />
-        <circle cx={cx} cy={cy} r={90} fill="white" stroke="none" />
+        {/* <circle cx={cx} cy={cy} r={80} fill="white" stroke="none" /> */}
       </g>
     );
   };
