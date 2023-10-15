@@ -25,6 +25,7 @@ import LinearChart from "../components/LinearChart.js"
 import RadarChart from "../components/RadarChart.js"
 import PieChart from "../components/PieChart.js"
 
+import mockedUserInfos from "../__mocks__/userInfos.js"
 
 function Accueil(){
     const [userName, setUserName] = useState(null);
@@ -49,14 +50,12 @@ function Accueil(){
 
     let { id } = useParams();
 
-    if(!id){
-        id = 18;
-    }
+    if(!id){id = 18;}
 
-    let userInfos = new getUserInfos(id);
+    // let userInfos = new getUserInfos(id);
+    //Ou avec les données mockées
+    let userInfos = new mockedUserInfos(id);
 
-
-    
     
     const handleUserName = async () => {
         let name = await userInfos.getUserName();
@@ -102,8 +101,6 @@ function Accueil(){
     };
     const handleUserPerformances = async () => {
         let performances = await userInfos.getUserPerformances();
-        console.log("performances");
-        console.log(performances);
         setUserPerformances(performances);
         setPerformancesLoading(false);
         return;

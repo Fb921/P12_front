@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Accueil from './components/Accueil.js';
+import NotFound from './components/NotFound.js';
 
 function App() {
     return(
@@ -7,7 +8,7 @@ function App() {
           <Router> 
               <Routes>
                   <Route path="/user/:id" element={<Accueil />} />
-                  <Route path="*" element={<Accueil />} />
+                  <Route path="*" element={<NotFound />} />
               </Routes>
           </Router>
         </div>

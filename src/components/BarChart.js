@@ -28,7 +28,6 @@ function tooltipContent(e){
 }
 
 const CustomizedCursor = (e)=>{
-  console.log(e);
   let w = 12;
   let l = 20;
   if(e.payloadIndex == 6){
